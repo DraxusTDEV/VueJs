@@ -1,15 +1,43 @@
 <script setup>
+import {ref} from 'vue'
+
   const name = 'Práctica VUEJS3'
+  const counter = ref(0);
+  const arrayFavoritos = ref([]);
+
+  const aumentar = () => {
+    counter.value++;
+    //console.log(counter.value);
+  }
+
+  const disminuir = () => {
+    counter.value--;
+    //console.log(counter.value);
+  }
+
+  const reset = () => {
+    counter.value = 0;
+    //console.log(counter.value);
+  }
+
+  const add = () => {
+    arrayFavoritos.value.push(counter.value);
+    //console.log(arrayFavoritos);
+  }
 </script>
 
 <template>
   <h1>{{name}}</h1>
-  <div class="conta">0</div>
+  <div class="conta">{{counter}}</div>
   <div class="container">
-    <button>Aumentar</button>
-    <button>Disminuir</button>
-    <button>Reset</button>
+    <button @click="aumentar">Aumentar</button>
+    <button v-on:click="disminuir">Disminuir</button>
+    <button @click="reset">Reset</button>
+    <button @click="add">Add</button>
   </div>
+  <hr>
+  <hr>
+    {{arrayFavoritos}}
 </template>
 
 <style >
@@ -23,7 +51,7 @@
 
   .container{
     width: 100%;
-    height: 100px;
+    height: 300px;
     background: gray;
     display: flex;
     justify-content: center;
