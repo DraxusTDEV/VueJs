@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from '@vue/reactivity';
 import {ref} from 'vue'
 
   const name = 'Práctica VUEJS3'
@@ -24,6 +25,13 @@ import {ref} from 'vue'
     arrayFavoritos.value.push(counter.value);
     //console.log(arrayFavoritos);
   }
+
+  const bloquearBtnAdd = computed(() => {
+    const numSearch = arrayFavoritos.value.find(num => num === counter.value)
+    console.log(numSearch);
+    if(numSearch === 0) return true;
+    return numSearch ? true : false;
+  })
 </script>
 
 <template>
@@ -33,11 +41,20 @@ import {ref} from 'vue'
     <button @click="aumentar">Aumentar</button>
     <button v-on:click="disminuir">Disminuir</button>
     <button @click="reset">Reset</button>
-    <button @click="add">Add</button>
+    <button @click="add" :disabled="bloquearBtnAdd">Add</button>
   </div>
   <hr>
+  <br><br>
   <hr>
+  <br>
     {{arrayFavoritos}}
+  <br><br>
+  <ul>
+    <li
+      v-for="(num, index) in arrayFavoritos"
+      :key="index"
+    >{{num}}</li>
+  </ul>
 </template>
 
 <style >
