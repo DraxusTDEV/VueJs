@@ -47,7 +47,7 @@
      <br>
       
     <ul>  
-      <li v-for="({id, label}, index) in items">{{index}} - {{label}}</li><hr> <!--aquí se muestra también el index-->
+      <li v-for="({id, label}, index) in items">{{id}} - {{label}}</li><hr> <!--aquí se muestra también el index-->
     </ul><br>
 
 
