@@ -139,7 +139,16 @@ li input {
   padding: 0.5rem 0.75rem;
   flex-shrink: 0;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.9re <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+
+<div class="wrapper">
+  <HelloWorld msg="You did it!" />
+</div>
+</header>
+
+<main>
+<TheWelcome />
+</main>m;
   letter-spacing: 0.5px;
   transition: all 0.1s ease-in;
 }
