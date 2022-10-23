@@ -2,41 +2,26 @@
   import { ref } from 'vue'
 
   const header = ref('Lista de compras')
-  const editing = ref(true)
 
   const items = ref([
     
   ])
 
   const newItem = ref('')
-  const newItemPriority = ref()
+  const newItemPriority = ref(false)
 
   const saveItem = ()=> {
     items.value.push({id: items.value.length + 1, label: newItem.value})
     newItem.value = ''
   }
 
-  const doEdit = (e) => {
-    editing.value = e
-    newItem.value = ""
-  }
-
 </script>
 
 <template>
-  <div class="header">
     <h1>{{header}}</h1>
-    <button class="btn" v-if="editing" @click="doEdit(false)">
-      Cancelar
-    </button>
-    <button class="btn btn-primary" v-else  @click="doEdit(true)">
-      Adicionar Item
-    </button>
-  </div>
     <form 
       class="add-item-form"  
       v-on:submit.prevent="saveItem"
-      v-if="editing"
     >
     
       <input 
@@ -70,11 +55,7 @@
     <ul>  
       <li v-for="({id, label}, index) in items">
         {{id}} - {{label}}
-      </li> <!--aquí se muestra también el index-->
-
-    <p v-if="!items.length">
-      Nada para mostrar acá
-    </p>
+      </li><hr> <!--aquí se muestra también el index-->
     </ul><br>
 
 
