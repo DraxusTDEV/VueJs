@@ -5,20 +5,32 @@
   const editing = ref(true)
 
   const items = ref([
-    
+    {id: 1, label: "10 Manzanas", purchased: true, highPriority: false },
+    {id: 2, label: "50 Fresas", purchased: true, highPriority: false  },
+    {id: 3, label: "15 Peras", purchased: false, highPriority: true  }
   ])
 
   const newItem = ref('')
   const newItemPriority = ref()
 
   const saveItem = ()=> {
-    items.value.push({id: items.value.length + 1, label: newItem.value})
+    items.value.push({
+      id: items.value.length + 1, 
+      label: newItem.value,
+      highPriority: newItemPriority.value
+    })
     newItem.value = ''
+    newItemPriority.value
   }
 
   const doEdit = (e) => {
     editing.value = e
     newItem.value = ""
+    newItemPriority.value
+  }
+
+  const tooglePurchased = (item)=> {
+    item.purchased = !item.purchased
   }
 
 </script>
@@ -70,9 +82,27 @@
      <br>
       
     <ul>  
-      <li v-for="({id, label}, index) in items">
+      <li 
+        v-for="({id, label, purchased, highPriority}, index) in items"
+        @click="tooglePurchased(items[index])"
+        :key="id"
+        class="static-class"
+        :class="{strikeout:purchased, priority: highPriority}"
+        >
         {{id}} - {{label}}
       </li> <!--aquí se muestra también el index-->
+      <hr>
+      <!-- 
+        <li 
+        v-for="({id, label, purchased, highPriority}, index) in items"
+        :key="id"
+        class="static-class"
+        :class="['strikeout', 'priority']"
+        >
+        {{id}} - {{label}}
+      </li>aquí se muestra también el index-->
+      
+      
 
     <p v-if="!items.length">
       Nada para mostrar acá
@@ -195,16 +225,7 @@ li input {
   padding: 0.5rem 0.75rem;
   flex-shrink: 0;
   cursor: pointer;
-  font-size: 0.9re <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-<div class="wrapper">
-  <HelloWorld msg="You did it!" />
-</div>
-</header>
-
-<main>
-<TheWelcome />
-</main>m;
+  font-size: 0.9re;
   letter-spacing: 0.5px;
   transition: all 0.1s ease-in;
 }
