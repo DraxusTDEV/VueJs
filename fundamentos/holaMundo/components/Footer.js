@@ -1,9 +1,9 @@
 app.component('footer-banco', {
-    props: ['cantidad', 'fecha'],
+    props: ['valor', 'date'],
     template: /*html*/
         `<div class="bg-dark py-3 mt-2 text-white">
-            <h3>{{texto}} - {{cantidad}}</h3>
-            <p>{{fecha}}</p>
+            <h3>{{texto}} - {{valor}}</h3>
+            <p>{{date}}</p>
          </div>`,
 
     data() {

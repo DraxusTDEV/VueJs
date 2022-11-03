@@ -44,8 +44,8 @@
         <button @click="disminuirSaldo(100)" :disabled="desactivar">Disminuir Saldo</button>
 
         <footer-banco 
-            :cantidad="cantidad"
-            fecha="Nov 01-2022"    
+            :valor="cantidad"
+            :date="fecha()"  
         />
         
 

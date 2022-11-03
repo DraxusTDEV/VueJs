@@ -22,6 +22,11 @@ const app = Vue.createApp({
                 return
             }
             this.cantidad = this.cantidad - valor
+        },
+
+        fecha(){
+            const date = new Date()
+            return date
         }
     },
 
