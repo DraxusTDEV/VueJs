@@ -6,8 +6,15 @@
     {{ index + 1 }} - {{ servicio }}
   </h3>
 
-  <AccionSaldo @accion="aumentar" texto='Aumentar Saldo'/>
-  <AccionSaldo @accion="disminuir" texto='Disminuir saldo'/>
+  <AccionSaldo 
+    @accion="aumentar" 
+    texto='Aumentar Saldo'
+  />
+  <AccionSaldo 
+    @accion="disminuir" 
+    texto='Disminuir saldo'
+    :desactivar='desactivar'  
+  />
 
 </template>
 
@@ -25,6 +32,7 @@ export default {
             saldo: 1000,
             cuenta: 'Visa',
             estado: false,
+            desactivar: false,
             servicios: [
                 'Giros',
                 'Abonos',
@@ -36,9 +44,11 @@ export default {
     methods: {
       aumentar() {
         this.saldo = this.saldo + 100
+        this.desactivar = false 
       },
       disminuir() {
         if(this.saldo === 0){
+          this.desactivar = true
           alert('sin saldo')
           return
         }
